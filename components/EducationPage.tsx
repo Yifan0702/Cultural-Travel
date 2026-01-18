@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { Calendar, MapPin, User, ChevronLeft, ChevronRight, CheckCircle, X, Sparkles, Loader2, Play, BookOpen, Clock, Heart, Download, Link as LinkIcon, Award, Footprints, TrendingUp } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import ImageWithFallback from './ImageWithFallback';
+import { getImagePath } from '../utils/imageUtils';
 
 interface Event {
   id: number;
@@ -42,7 +43,7 @@ const EVENTS: Event[] = [
   {
     id: 1,
     title: "指尖上的传承：苏绣体验课",
-    image: "/images/education/events/suzhou-embroidery.jpg",
+    image: getImagePath("images/education/events/suzhou-embroidery.jpg"),
     prompt: "A close-up, high-quality photo of traditional Chinese Suzhou embroidery. Fine silk threads, a half-finished peony on a round frame. Soft natural lighting.",
     date: "2024年11月15日 14:00-16:00",
     location: "苏州博物馆 · 工艺体验室",
@@ -54,7 +55,7 @@ const EVENTS: Event[] = [
   {
     id: 2,
     title: "大唐遗韵：唐三彩烧制技艺工作坊",
-    image: "/images/education/events/tang-sancai-pottery.jpg",
+    image: getImagePath("images/education/events/tang-sancai-pottery.jpg"),
     prompt: "Exquisite Tang Sancai pottery, a horse glazed figurine with vibrant amber and green colors. Warm kiln light.",
     date: "2024年11月22日 10:00-12:00",
     location: "洛阳博物馆 · 研习工坊",
@@ -66,7 +67,7 @@ const EVENTS: Event[] = [
   {
     id: 3,
     title: "墨香古今：传统笔墨纸砚鉴赏",
-    image: "/images/education/events/calligraphy-tools.jpg",
+    image: getImagePath("images/education/events/calligraphy-tools.jpg"),
     prompt: "Top down view of a Chinese scholar's desk with inkstick, inkstone, and brush. Zen style.",
     date: "2024年12月05日 15:00-17:00",
     location: "中国国家博物馆 · 讲经堂",
@@ -83,7 +84,7 @@ const LECTURES: Lecture[] = [
     title: "敦煌艺术通识：壁画里的千年色彩",
     lecturer: "常青教授",
     title_desc: "著名考古学家 · 敦煌学研究领军人物",
-    image: "/images/education/lectures/dunhuang-murals.jpg",
+    image: getImagePath("images/education/lectures/dunhuang-murals.jpg"),
     episodes: 12,
     summary: "本课程将带你深入莫高窟，从矿物颜料的制备到飞天造型的演变，系统解析敦煌壁画背后跨越千年的美学逻辑与历史记忆。",
     keyPoints: ["西域风格与中原审美的融合", "北朝至晚清壁画分期特征", "古代画师的色彩心理学"]
@@ -93,7 +94,7 @@ const LECTURES: Lecture[] = [
     title: "青铜时代的礼与乐：商周文明概论",
     lecturer: "许宏教授",
     title_desc: "二里头考古队首任队长 · 先秦史专家",
-    image: "/images/education/lectures/bronze-ritual.jpg",
+    image: getImagePath("images/education/lectures/bronze-ritual.jpg"),
     episodes: 8,
     summary: "从「国之大事，在祀与戎」出发，解读青铜器铭文背后的权利更迭与宗法制度，探寻华夏文明早期的礼乐精神。",
     keyPoints: ["鼎簋制度与阶级森严", "金文中的家国情怀", "青铜器范铸法工艺还原"]
@@ -105,7 +106,7 @@ const BLOGGER_VIDEOS: BloggerVideo[] = [
     id: 1,
     title: "这件国宝背后的故事亮了！三星堆青铜神树揭秘",
     blogger: "文化探索官小北",
-    cover: "/images/education/videos/sanxingdui-tree.jpg",
+    cover: getImagePath("images/education/videos/sanxingdui-tree.jpg"),
     views: "12.5w",
     duration: "15:20"
   },
@@ -113,7 +114,7 @@ const BLOGGER_VIDEOS: BloggerVideo[] = [
     id: 2,
     title: "沉浸式看展：故宫隐藏的清代审美巅峰",
     blogger: "故宫里的猫",
-    cover: "/images/education/videos/forbidden-city-art.jpg",
+    cover: getImagePath("images/education/videos/forbidden-city-art.jpg"),
     views: "8.9w",
     duration: "22:45"
   },
@@ -121,7 +122,7 @@ const BLOGGER_VIDEOS: BloggerVideo[] = [
     id: 3,
     title: "拆解！古代榫卯结构到底有多硬核？",
     blogger: "硬核匠人木木",
-    cover: "/images/education/videos/mortise-tenon.jpg",
+    cover: getImagePath("images/education/videos/mortise-tenon.jpg"),
     views: "25.1w",
     duration: "18:10"
   }

@@ -324,9 +324,9 @@ const App: React.FC = () => {
            </div>
            <div className="space-y-4">
               {[
-                { title: '盛世长安：十三朝古都巡礼', desc: '穿越三千年，在古都西安探寻周秦汉唐的辉煌余韵。', img: '/images/home/routes/xian-ancient-capital.jpg' },
-                { title: '红船精神：江南红色印记', desc: '嘉兴南湖到南京雨花台，传承那抹永不褪色的文化血脉。', img: '/images/home/routes/jiangnan-red-route.jpg' },
-                { title: '山水人文：浙东唐诗之路', desc: '寻访诗画浙江，感受古代文人墨客的归隐精神。', img: '/images/home/routes/zhedong-poetry-route.jpg' }
+                { title: '盛世长安：十三朝古都巡礼', desc: '穿越三千年，在古都西安探寻周秦汉唐的辉煌余韵。', img: getImagePath('images/home/routes/xian-ancient-capital.jpg') },
+                { title: '红船精神：江南红色印记', desc: '嘉兴南湖到南京雨花台，传承那抹永不褪色的文化血脉。', img: getImagePath('images/home/routes/jiangnan-red-route.jpg') },
+                { title: '山水人文：浙东唐诗之路', desc: '寻访诗画浙江，感受古代文人墨客的归隐精神。', img: getImagePath('images/home/routes/zhedong-poetry-route.jpg') }
               ].map((route, i) => (
                 <div key={i} className="flex gap-5 p-4 bg-white rounded-2xl border border-stone-100 hover:border-heritage-cinnabar/20 transition-all group cursor-pointer soft-shadow">
                   <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
@@ -404,10 +404,10 @@ const App: React.FC = () => {
            </div>
            <div className="grid grid-cols-2 gap-4">
               {[
-                { title: '故宫红墙摄影', views: '2.1k', img: '/images/home/community/forbidden-city-red-wall.jpg' },
-                { title: '苏博贝聿铭展', views: '1.5k', img: '/images/home/community/suzhou-museum-pei.jpg' },
-                { title: '莫高窟九层楼', views: '800', img: '/images/home/community/mogao-caves.jpg' },
-                { title: '南京明故宫遗址', views: '1.2k', img: '/images/home/community/nanjing-ming-palace.jpg' }
+                { title: '故宫红墙摄影', views: '2.1k', img: getImagePath('images/home/community/forbidden-city-red-wall.jpg') },
+                { title: '苏博贝聿铭展', views: '1.5k', img: getImagePath('images/home/community/suzhou-museum-pei.jpg') },
+                { title: '莫高窟九层楼', views: '800', img: getImagePath('images/home/community/mogao-caves.jpg') },
+                { title: '南京明故宫遗址', views: '1.2k', img: getImagePath('images/home/community/nanjing-ming-palace.jpg') }
               ].map((post, i) => (
                 <div key={i} className="group cursor-pointer">
                    <div className="aspect-square rounded-2xl overflow-hidden mb-2 soft-shadow border border-stone-100">
