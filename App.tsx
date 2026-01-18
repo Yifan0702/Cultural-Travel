@@ -12,6 +12,7 @@ import { fetchMuseumsForProvince } from './services/geminiService';
 import { Museum, LoadingState } from './types';
 import { PROVINCES, PROVINCE_PREVIEWS } from './constants';
 import { normalizeProvinceName } from './utils/provinceUtils';
+import { getImagePath } from './utils/imageUtils';
 // Added Mountain to the imports from lucide-react
 import { Compass, Map as MapIcon, Share2, ArrowRight, Calendar, Users, Star, ChevronRight, Mountain } from 'lucide-react';
 
@@ -65,9 +66,9 @@ const App: React.FC = () => {
   // 将PROVINCE_PREVIEWS数据转换为Museum格式
   const convertToMuseums = useCallback((provinceMuseums: string[], provinceName: string): Museum[] => {
     const museumImages = [
-      '/images/museums/museum-1.jpg',
-      '/images/museums/museum-2.jpg',
-      '/images/museums/museum-3.jpg'
+      getImagePath('images/museums/museum-1.jpg'),
+      getImagePath('images/museums/museum-2.jpg'),
+      getImagePath('images/museums/museum-3.jpg')
     ];
     
     return provinceMuseums.map((name, index) => ({

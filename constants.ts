@@ -1,3 +1,4 @@
+import { getImagePath } from './utils/imageUtils';
 
 export const PROVINCES = [
   "北京", "上海", "陕西", "江苏", "浙江", 
@@ -53,11 +54,11 @@ export interface CommunityCheckIn {
 }
 
 export const COMMUNITY_CHECKINS: CommunityCheckIn[] = [
-  { id: 1, title: "故宫红墙", image: "/images/community/ginkgo-temple.jpg", count: "128.5k", tag: "北京" },
-  { id: 2, title: "莫高窟九层楼", image: "/images/community/fireworks-lake.jpg", count: "45.2k", tag: "甘肃" },
-  { id: 3, title: "兵马俑一号坑", image: "/images/community/nordic-winter.jpg", count: "89.1k", tag: "陕西" },
-  { id: 4, title: "南京博物院特展区", image: "/images/community/ginkgo-architecture.jpg", count: "32.4k", tag: "江苏" },
-  { id: 5, title: "西湖断桥雪", image: "/images/community/window-snow.jpg", count: "210k", tag: "浙江" }
+  { id: 1, title: "故宫红墙", image: getImagePath("images/community/ginkgo-temple.jpg"), count: "128.5k", tag: "北京" },
+  { id: 2, title: "莫高窟九层楼", image: getImagePath("images/community/fireworks-lake.jpg"), count: "45.2k", tag: "甘肃" },
+  { id: 3, title: "兵马俑一号坑", image: getImagePath("images/community/nordic-winter.jpg"), count: "89.1k", tag: "陕西" },
+  { id: 4, title: "南京博物院特展区", image: getImagePath("images/community/ginkgo-architecture.jpg"), count: "32.4k", tag: "江苏" },
+  { id: 5, title: "西湖断桥雪", image: getImagePath("images/community/window-snow.jpg"), count: "210k", tag: "浙江" }
 ];
 
 export interface CommunityFeedItem {
@@ -74,7 +75,7 @@ export const COMMUNITY_FEED: CommunityFeedItem[] = [
   {
     id: 1,
     user: { name: "云游诗人", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" },
-    image: "/images/community/posts/ginkgo-temple-roof.jpg",
+    image: getImagePath("images/community/posts/ginkgo-temple-roof.jpg"),
     content: "今日在故宫，红墙衬着瑞雪，仿佛穿越回了那个辉煌的时代。每一块砖瓦都在低语。",
     likes: 342,
     location: "故宫博物院",
@@ -86,7 +87,7 @@ export const COMMUNITY_FEED: CommunityFeedItem[] = [
   {
     id: 2,
     user: { name: "青灯影", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" },
-    image: "/images/community/posts/mogao-murals.jpg",
+    image: getImagePath("images/community/posts/mogao-murals.jpg"),
     content: "敦煌壁画带来的冲击是巨大的。那种跨越千年的艳丽色彩，是现代科技难以复刻的神韵。",
     likes: 856,
     location: "敦煌莫高窟",
@@ -97,7 +98,7 @@ export const COMMUNITY_FEED: CommunityFeedItem[] = [
   {
     id: 3,
     user: { name: "古建筑狂热粉", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=George" },
-    image: "/images/community/posts/celadon-bowl.jpg",
+    image: getImagePath("images/community/posts/celadon-bowl.jpg"),
     content: "苏州博物馆的建筑本身就是一件艺术品。贝聿铭先生将现代与传统融合到了极致。",
     likes: 120,
     location: "苏州博物馆",
@@ -108,7 +109,7 @@ export const COMMUNITY_FEED: CommunityFeedItem[] = [
   {
     id: 4,
     user: { name: "金陵往事", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Caleb" },
-    image: "/images/community/posts/nanjing-celadon.jpg",
+    image: getImagePath("images/community/posts/nanjing-celadon.jpg"),
     content: "在南博见到了影青釉。那种温润如玉的质感，让人感叹古人的审美。",
     likes: 67,
     location: "南京博物院",
@@ -155,11 +156,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "陕西历史博物馆",
     category: "纪念品",
     price: 158,
-    image: "/images/shop/products/daming-palace-fan.jpg",
+    image: getImagePath("images/shop/products/daming-palace-fan.jpg"),
     gallery: [
-      "/images/shop/products/daming-palace-fan.jpg",
-      "/images/shop/products/daming-palace-fan.jpg",
-      "/images/shop/products/daming-palace-fan.jpg"
+      getImagePath("images/shop/products/daming-palace-fan.jpg")),
+      getImagePath("images/shop/products/daming-palace-fan.jpg")),
+      getImagePath("images/shop/products/daming-palace-fan.jpg")
     ],
     description: "扇面通过数字化修复技术，重现大明宫宣政殿、麟德殿的壮丽景观。扇骨精选上等头青冬竹，手感细腻温润。轻摇扇动，仿佛能感受到千年盛唐吹来的微风，带着万宫之宫的威严与雅致，是兼具实用性与历史厚重感的艺术收藏。",
     history: "大明宫曾是唐帝国的统治中心，被誉为“万宫之宫”。本款折扇的设计灵感来源于考古发掘出的建筑基址与传世画卷，利用现代数字绘画技术还原其红墙金瓦、斗拱纵横的繁华盛景，展现了中国古代木构建筑的最高水平。",
@@ -172,11 +173,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "敦煌研究院",
     category: "艺术品",
     price: 450,
-    image: "/images/shop/products/mogao-silk-scarf.jpg",
+    image: getImagePath("images/shop/products/mogao-silk-scarf.jpg"),
     gallery: [
-      "/images/shop/products/mogao-silk-scarf.jpg",
-      "/images/shop/products/mogao-silk-scarf.jpg",
-      "/images/shop/products/mogao-silk-scarf.jpg"
+      getImagePath("images/shop/products/mogao-silk-scarf.jpg"),
+      getImagePath("images/shop/products/mogao-silk-scarf.jpg"),
+      getImagePath("images/shop/products/mogao-silk-scarf.jpg"
     ],
     description: "以敦煌莫高窟标志性的“九色鹿”与“飞天”纹样为核心，采用顶级桑蚕丝织就，触感丝滑。色彩经过百次比对，完美还原矿物颜料在千年时光洗礼下的独特质感。飘逸的流云纹饰与神圣的佛国景象相互辉映，将这份世界文化遗产的绚烂，化作指尖与颈间的优雅。",
     history: "敦煌壁画是中国石窟艺术的瑰宝。其中的九色鹿图案出自第257窟，传递着善良、诚信与慈悲。此款丝巾不仅是服饰配件，更是敦煌学研究成果与现代丝绸工艺的结晶，让深藏于沙漠中的璀璨文明，以流动的姿态回归生活。",
@@ -189,11 +190,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "南京博物院",
     category: "生活家居",
     price: 399,
-    image: "/images/shop/products/incense-burner.jpg",
+    image: getImagePath("images/shop/products/incense-burner.jpg"),
     gallery: [
-      "/images/shop/products/incense-burner.jpg",
-      "/images/shop/products/incense-burner.jpg",
-      "/images/shop/products/incense-burner.jpg"
+      getImagePath("images/shop/products/incense-burner.jpg"),
+      getImagePath("images/shop/products/incense-burner.jpg"),
+      getImagePath("images/shop/products/incense-burner.jpg"
     ],
     description: "器型端庄稳重，炉身环绕精美的云纹与如意结装饰，寓意平安祥瑞。选用特种合金复刻青铜质感，表面经多层仿古工艺处理。当线香燃起，缕缕轻烟顺着缕空的如意云纹袅袅升起，宁静致远，为案头工作或品茗时光增添一抹古典书卷气息。",
     history: "“如意”作为中国传统的吉祥器物，其云纹变体象征着对自然灵气的崇拜与生活美好的祈愿。此炉设计参考了南京博物院馆藏的明清宣德款香炉细节，将古人的香道文化与现代家居氛围完美融合，旨在喧嚣中营造一份中式静谧。",
@@ -206,11 +207,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "故宫博物院",
     category: "纪念品",
     price: 32,
-    image: "/images/shop/products/qianli-jiangshan-tap.jpg",
+    image: getImagePath("images/shop/products/qianli-jiangshan-tap.jpg"),
     gallery: [
-      "/images/shop/products/qianli-jiangshan-tap.jpg",
-      "/images/shop/products/qianli-jiangshan-tap.jpg",
-      "/images/shop/products/qianli-jiangshan-tap.jpg"
+      getImagePath("images/shop/products/qianli-jiangshan-tap.jpg"),
+      getImagePath("images/shop/products/qianli-jiangshan-tap.jpg"),
+      getImagePath("images/shop/products/qianli-jiangshan-tap.jpg"
     ],
     description: "微缩复刻北宋王希孟《千里江山图》，采用特种和纸材质，触感柔韧且不易留胶痕。长达10米的胶带循环展示了青绿山水的巅峰之作：峰峦叠嶂，江河浩渺，茅舍村庄点缀其间。无论是作为手账装饰，还是礼品包装，都能让收礼者感受到中华山水画博大精深的意境。",
     history: "《千里江山图》是故宫博物院的“镇馆之宝”之一，由十八岁天才画家王希孟在北宋宣和年间创作。该图以石青、石绿等天然矿物颜料绘就，色彩千年不褪。本款胶带致力于将这幅传世名作带入日常办公，让美学与实用在方寸之间共生。",
@@ -223,11 +224,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "南京博物院",
     category: "纪念品",
     price: 68,
-    image: "/images/shop/products/metal-bookmark.jpg",
+    image: getImagePath("images/shop/products/metal-bookmark.jpg"),
     gallery: [
-      "/images/shop/products/metal-bookmark.jpg",
-      "/images/shop/products/metal-bookmark.jpg",
-      "/images/shop/products/metal-bookmark.jpg"
+      getImagePath("images/shop/products/metal-bookmark.jpg"),
+      getImagePath("images/shop/products/metal-bookmark.jpg"),
+      getImagePath("images/shop/products/metal-bookmark.jpg"
     ],
     description: "以故宫建筑脊兽为原型，采用精密金属蚀刻技术，线条流畅细如发丝。书签表面经过真金电镀，不仅光泽持久，更具有极佳的耐腐蚀性。它是古老建筑智慧在纸间的停留，也是对传统匠心精神的微缩致敬，为每一次翻开书页的瞬间，带来皇家建筑的庄重与静谧。",
     history: "故宫的屋檐脊兽不仅是装饰，更是等级与辟邪消灾的象征。从领头骑凤仙人到身后的狮子、海马、天马。本系列选取了寓意最为祥瑞的“龙”与“麒麟”作为主设计，旨在将故宫的护佑之意，传递给每一位热爱阅读的人。",
@@ -240,11 +241,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "陕西历史博物馆",
     category: "艺术品",
     price: 1280,
-    image: "/images/shop/products/tang-sancai-horse.jpg",
+    image: getImagePath("images/shop/products/tang-sancai-horse.jpg"),
     gallery: [
-      "/images/shop/products/tang-sancai-horse.jpg",
-      "/images/shop/products/tang-sancai-horse.jpg",
-      "/images/shop/products/tang-sancai-horse.jpg"
+      getImagePath("images/shop/products/tang-sancai-horse.jpg"),
+      getImagePath("images/shop/products/tang-sancai-horse.jpg"),
+      getImagePath("images/shop/products/tang-sancai-horse.jpg"
     ],
     description: "纯手工采用传统工艺复刻唐代盛世三彩，骏马姿态英挺，肌肉线条矫健。其釉色在窑内高温下自然流淌、交融，形成了独一无二的斑斓纹理。这不仅是一件摆件，更是大唐帝国包容自信、昂扬向上精神风貌的微缩写照，展现了中国传统低温铅釉陶器的最高艺术成就。",
     history: "唐三彩盛行于唐代，以黄、绿、白三色为主，是丝绸之路文化交流的物证. 此件复刻品采用洛阳唐三彩原产地高岭土，遵循古法配方与分段烧制技术，旨在最大程度还原盛唐时期那一抹鲜活而灵动的历史底蕴。",
@@ -257,11 +258,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "南京博物院",
     category: "艺术品",
     price: 588,
-    image: "/images/shop/products/celadon-tableware.jpg",
+    image: getImagePath("images/shop/products/celadon-tableware.jpg"),
     gallery: [
-      "/images/shop/products/celadon-tableware.jpg",
-      "/images/shop/products/celadon-tableware.jpg",
-      "/images/shop/products/celadon-tableware.jpg"
+      getImagePath("images/shop/products/celadon-tableware.jpg"),
+      getImagePath("images/shop/products/celadon-tableware.jpg"),
+      getImagePath("images/shop/products/celadon-tableware.jpg"
     ],
     description: "这套二十二头餐具融合了“青如天、明如镜”的影青釉质感与灵动的青花缠枝纹。瓷胎致密半透明，在灯光下呈现出淡淡的鸭蛋青色。细腻的纹饰经过手工勾勒，层次丰富。无论是日常进餐还是待客盛宴，这套瓷器都能赋予餐桌一份来自北宋景德镇窑火淬炼后的儒雅与洁净。",
     history: "影青釉又名青白瓷，是宋代著名的瓷器品种。南京博物院馆藏多件精美青白瓷器，本产品提取其中的缠枝莲纹与如意头纹作为设计元素，并根据现代人体工程学改良碗盘弧度，是“古艺新用”的最佳范例，传递着平安、连绵不绝的美好祝愿。",
@@ -274,11 +275,11 @@ export const SHOP_PRODUCTS: Product[] = [
     museum: "故宫博物院",
     category: "书籍",
     price: 298,
-    image: "/images/shop/products/dunhuang-book.jpg",
+    image: getImagePath("images/shop/products/dunhuang-book.jpg"),
     gallery: [
-      "/images/shop/products/dunhuang-book.jpg",
-      "/images/shop/products/dunhuang-book.jpg",
-      "/images/shop/products/dunhuang-book.jpg"
+      getImagePath("images/shop/products/dunhuang-book.jpg"),
+      getImagePath("images/shop/products/dunhuang-book.jpg"),
+      getImagePath("images/shop/products/dunhuang-book.jpg"
     ],
     description: "这是一本跨越千年的影像集. 全书采用特种哑粉纸精美印刷，高清收录了莫高窟最具代表性的彩塑与壁画. 从北魏的古朴到盛唐的繁丽，每一页都配有权威专家的深度导读，带您走进那座被沙漠守护的“墙壁上的图书馆”，感悟人类宗教艺术与历史人文交织出的壮丽乐章。",
     history: "敦煌莫高窟是中国乃至世界现存规模最大、内容最丰富的佛教艺术地. 本书由敦煌研究院官方编纂，包含多处非开放特窟的独家珍贵照片，致力于将这一人类共有文化遗产的细节，以最高清的规格呈现在读者面前，极具学术研究与艺术鉴赏价值。",
