@@ -5,6 +5,7 @@ import MuseumCard from './MuseumCard';
 import { PROVINCES, PROVINCE_PREVIEWS, PROVINCE_BANNERS } from '../constants';
 import ImageWithFallback from './ImageWithFallback';
 import { normalizeProvinceName, getProvinceId } from '../utils/provinceUtils';
+import { getImagePath } from '../utils/imageUtils';
 
 interface ProvinceIndexPageProps {
   province: string | null;
@@ -23,7 +24,7 @@ const THEMED_DESTINATIONS = [
     icon: History,
     color: 'text-heritage-cinnabar',
     bg: 'bg-heritage-cinnabar/5',
-    img: '/images/destinations/themed/history-echoe.jpg',
+    img: getImagePath('images/destinations/themed/history-echoe.jpg'),
     museums: [
       { name: '故宫博物院', city: '北京' },
       { name: '陕西历史博物馆', city: '西安' },
@@ -38,7 +39,7 @@ const THEMED_DESTINATIONS = [
     icon: Palette,
     color: 'text-gold-accent',
     bg: 'bg-gold-accent/5',
-    img: '/images/destinations/themed/art-craftsmanship.jpg',
+    img: getImagePath('images/destinations/themed/art-craftsmanship.jpg'),
     museums: [
       { name: '苏州博物馆', city: '苏州' },
       { name: '上海博物馆', city: '上海' },
@@ -53,7 +54,7 @@ const THEMED_DESTINATIONS = [
     icon: Cpu,
     color: 'text-jade-green',
     bg: 'bg-jade-green/5',
-    img: '/images/destinations/themed/tech-future.jpg',
+    img: getImagePath('images/destinations/themed/tech-future.jpg'),
     museums: [
       { name: '上海科技馆', city: '上海' },
       { name: '自贡恐龙博物馆', city: '自贡' },

@@ -5,6 +5,7 @@ import {
   MapPin, Award, Heart, MessageSquare, History, 
   Eye, Star, ChevronRight, Shield, CreditCard, RefreshCw 
 } from 'lucide-react';
+import { getImagePath } from '../utils/imageUtils';
 
 type SubSection = 'bookings' | 'orders' | 'messages' | 'settings';
 
@@ -44,8 +45,8 @@ const PersonalCenterPage: React.FC = () => {
               <button className="text-[10px] font-bold text-stone-300 hover:text-heritage-cinnabar uppercase tracking-widest">查看全部预约</button>
             </div>
             {[
-              { id: 1, title: '故宫红墙摄影课', date: '2024.12.15 14:00', location: '北京 · 故宫博物院', status: '准备出发', img: '/images/personal/trips/forbidden-city-photography.jpg' },
-              { id: 2, title: '青铜器修复体验', date: '2024.12.28 10:00', location: '西安 · 陕西历史博物馆', status: '待审核', img: '/images/personal/trips/bronze-restoration.jpg' }
+              { id: 1, title: '故宫红墙摄影课', date: '2024.12.15 14:00', location: '北京 · 故宫博物院', status: '准备出发', img: getImagePath('images/personal/trips/forbidden-city-photography.jpg') },
+              { id: 2, title: '青铜器修复体验', date: '2024.12.28 10:00', location: '西安 · 陕西历史博物馆', status: '待审核', img: getImagePath('images/personal/trips/bronze-restoration.jpg') }
             ].map(item => (
               <div key={item.id} className="group bg-white rounded-3xl border border-stone-100 p-6 flex flex-col md:flex-row gap-6 hover:shadow-xl hover:shadow-stone-200/40 transition-all duration-500">
                 <div className="w-full md:w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 bg-stone-50">
