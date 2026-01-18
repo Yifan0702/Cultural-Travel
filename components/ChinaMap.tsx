@@ -36,7 +36,7 @@ const ChinaMap: React.FC<ChinaMapProps> = ({ onSelect, selectedProvince }) => {
 
     const fetchMapData = async () => {
       try {
-        const response = await fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}china-map.json`);
         const geoJson = await response.json();
 
         geoJson.features = geoJson.features.filter((f: any) => {
