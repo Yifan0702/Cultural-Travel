@@ -313,38 +313,38 @@ const EducationPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full animate-fade-in flex flex-col pb-40">
+    <div className="w-full animate-fade-in flex flex-col pb-16 md:pb-40">
       {/* Page Header */}
-      <div className="mb-16 flex items-center justify-between">
+      <div className="mb-10 md:mb-16 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-serif font-bold text-ink-black mb-2">学无止境 · 文化传薪</h2>
-          <p className="text-stone-400 text-[10px] tracking-[0.4em] uppercase font-bold">Bridging heritage and education through digital learning</p>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink-black mb-2">学无止境 · 文化传薪</h2>
+          <p className="text-stone-400 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-bold">Bridging heritage and education through digital learning</p>
         </div>
-        <div className="flex gap-4">
-          <button className="flex items-center gap-2 px-6 py-2.5 rounded-full border border-stone-200 text-stone-500 text-[10px] font-bold tracking-widest uppercase hover:bg-white hover:shadow-md transition-all">
-            <Calendar size={14} /> 我的预约
+        <div className="flex gap-2 md:gap-4">
+          <button className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-2.5 rounded-full border border-stone-200 text-stone-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase hover:bg-white hover:shadow-md transition-all">
+            <Calendar size={12} className="md:w-3.5 md:h-3.5" /> <span className="hidden sm:inline">我的</span>预约
           </button>
-          <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-heritage-cinnabar text-white text-[10px] font-bold tracking-widest uppercase hover:bg-china-red shadow-lg shadow-heritage-cinnabar/20 transition-all">
-            <Footprints size={14} /> 学习足迹
+          <button className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-2.5 rounded-full bg-heritage-cinnabar text-white text-[9px] md:text-[10px] font-bold tracking-widest uppercase hover:bg-china-red shadow-lg shadow-heritage-cinnabar/20 transition-all">
+            <Footprints size={12} className="md:w-3.5 md:h-3.5" /> <span className="hidden sm:inline">学习</span>足迹
           </button>
         </div>
       </div>
 
       {/* Section 1: Offline Experiences */}
-      <section className="mb-16">
-        <div id="offline-experience" className="flex items-center justify-between mb-10">
+      <section className="mb-12 md:mb-16">
+        <div id="offline-experience" className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 md:mb-10 gap-4">
           <div>
-            <h3 className="text-2xl font-serif font-bold text-ink-black flex items-center gap-3">
-              <MapPin className="text-heritage-cinnabar" size={24} /> 线下体验
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-ink-black flex items-center gap-2 md:gap-3">
+              <MapPin className="text-heritage-cinnabar" size={20} /> 线下体验
             </h3>
-            <p className="text-[10px] text-stone-400 font-bold uppercase tracking-[0.3em] mt-1 ml-9">Hands-on Workshops</p>
+            <p className="text-[9px] md:text-[10px] text-stone-400 font-bold uppercase tracking-[0.25em] md:tracking-[0.3em] mt-1 ml-7 md:ml-9">Hands-on Workshops</p>
           </div>
-          <button className="text-[10px] font-bold text-stone-400 hover:text-heritage-cinnabar uppercase tracking-widest border-b border-stone-200 hover:border-heritage-cinnabar pb-1 transition-all">
+          <button className="text-[9px] md:text-[10px] font-bold text-stone-400 hover:text-heritage-cinnabar uppercase tracking-widest border-b border-stone-200 hover:border-heritage-cinnabar pb-1 transition-all self-start sm:self-auto">
             查看更多线下活动
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {EVENTS.map((event, idx) => (
             <div key={event.id} className="group bg-white rounded-[2rem] border border-stone-100 shadow-sm overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-700 animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
               <div className="relative h-56 overflow-hidden bg-stone-100">

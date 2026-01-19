@@ -108,34 +108,34 @@ const ProvinceIndexPage: React.FC<ProvinceIndexPageProps> = ({
 
   if (!province) {
     return (
-      <div className="animate-fade-in w-full pb-32">
+      <div className="animate-fade-in w-full pb-12 md:pb-32">
         {/* Page Title */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-serif font-bold text-ink-black mb-2">探索目的地</h2>
-          <p className="text-stone-400 text-[10px] tracking-[0.4em] uppercase font-bold">Discover museums and cultural sites across China</p>
+        <div className="mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink-black mb-2">探索目的地</h2>
+          <p className="text-stone-400 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-bold">Discover museums and cultural sites across China</p>
         </div>
         
         {/* Search Bar - Left Aligned */}
-        <div className="mb-20 relative group">
-          <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-            <Search className="text-stone-300 group-focus-within:text-heritage-cinnabar transition-colors" size={20} />
+        <div className="mb-12 md:mb-20 relative group">
+          <div className="absolute inset-y-0 left-4 md:left-6 flex items-center pointer-events-none">
+            <Search className="text-stone-300 group-focus-within:text-heritage-cinnabar transition-colors" size={18} />
           </div>
           <input 
             type="text" 
             placeholder="搜寻地区、主题或场馆瑰宝..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white border border-stone-100 shadow-sm rounded-[2rem] py-5 pl-16 pr-8 text-sm outline-none focus:ring-2 focus:ring-heritage-cinnabar/10 focus:border-heritage-cinnabar/20 transition-all placeholder:text-stone-300"
+            className="w-full bg-white border border-stone-100 shadow-sm rounded-2xl md:rounded-[2rem] py-3 md:py-5 pl-12 md:pl-16 pr-6 md:pr-8 text-sm outline-none focus:ring-2 focus:ring-heritage-cinnabar/10 focus:border-heritage-cinnabar/20 transition-all placeholder:text-stone-300"
           />
         </div>
 
         {/* 1. Provincial Directory - Dense Grid (8-10 per row) */}
-        <div className="mb-24">
-          <div className="flex items-center gap-4 mb-10">
-            <span className="text-[10px] font-bold text-stone-300 uppercase tracking-[0.4em]">目的地</span>
+        <div className="mb-16 md:mb-24">
+          <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-10">
+            <span className="text-[9px] md:text-[10px] font-bold text-stone-300 uppercase tracking-[0.3em] md:tracking-[0.4em]">目的地</span>
             <div className="h-[1px] flex-1 bg-stone-100"></div>
           </div>
-          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 md:gap-3">
             {PROVINCES.map((p, idx) => (
               <button 
                 key={p}
@@ -153,39 +153,39 @@ const ProvinceIndexPage: React.FC<ProvinceIndexPageProps> = ({
         </div>
 
         {/* 2. Seasonal Featured - Themed Destination (3 Vertical Cards) */}
-        <div className="pt-20 border-t border-stone-100">
-          <div id="hot-destinations" className="text-center mb-16">
-            <h3 className="text-2xl font-serif font-bold text-ink-black mb-2 flex items-center justify-center gap-3">
-              <Sparkles className="text-gold-accent fill-current" size={20} />
+        <div className="pt-12 md:pt-20 border-t border-stone-100">
+          <div id="hot-destinations" className="text-center mb-10 md:mb-16">
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-ink-black mb-2 flex items-center justify-center gap-2 md:gap-3">
+              <Sparkles className="text-gold-accent fill-current" size={18} />
               本季热门文化目的地
             </h3>
-            <p className="text-[10px] text-stone-400 font-bold uppercase tracking-[0.3em]">Season's Curated Heritage Themes</p>
+            <p className="text-[9px] md:text-[10px] text-stone-400 font-bold uppercase tracking-[0.25em] md:tracking-[0.3em]">Season's Curated Heritage Themes</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {THEMED_DESTINATIONS.map((theme, idx) => {
               const Icon = theme.icon;
               return (
                 <div 
                   key={theme.id} 
-                  className="bg-white rounded-[2.5rem] border border-stone-100 shadow-sm overflow-hidden flex flex-col group animate-fade-in-up" 
+                  className="bg-white rounded-2xl md:rounded-[2.5rem] border border-stone-100 shadow-sm overflow-hidden flex flex-col group animate-fade-in-up" 
                   style={{ animationDelay: `${idx * 150}ms` }}
                 >
                   {/* Styled Header Image */}
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-36 md:h-48 overflow-hidden">
                     <img src={theme.img} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000" alt={theme.title} />
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <div className={`p-4 rounded-full bg-white/90 backdrop-blur shadow-xl mb-3 ${theme.color}`}>
-                        <Icon size={24} />
+                      <div className={`p-3 md:p-4 rounded-full bg-white/90 backdrop-blur shadow-xl mb-2 md:mb-3 ${theme.color}`}>
+                        <Icon size={20} className="md:w-6 md:h-6" />
                       </div>
-                      <h4 className="text-xl font-serif font-bold text-white tracking-widest">{theme.title}</h4>
-                      <p className="text-[8px] text-white/80 font-bold uppercase tracking-[0.2em]">{theme.subtitle}</p>
+                      <h4 className="text-lg md:text-xl font-serif font-bold text-white tracking-widest px-4 text-center">{theme.title}</h4>
+                      <p className="text-[7px] md:text-[8px] text-white/80 font-bold uppercase tracking-[0.2em]">{theme.subtitle}</p>
                     </div>
                   </div>
 
                   {/* Representative Museums List */}
-                  <div className="p-10 flex-1 flex flex-col">
+                  <div className="p-6 md:p-10 flex-1 flex flex-col">
                     <div className="space-y-6 mb-10">
                       {theme.museums.map((m, mi) => (
                         <button 
