@@ -32,10 +32,10 @@ const App: React.FC = () => {
     const containerWidth = containerRect.width;
     const containerHeight = containerRect.height;
     
-    // 根据屏幕宽度动态计算卡片尺寸
+    // 根据屏幕宽度动态计算卡片尺寸（缩小到0.75倍）
     const isMobile = window.innerWidth < 768;
-    const cardWidth = isMobile ? Math.min(300, containerWidth - 24) : 380; // 移动端更小，留出更多边距
-    const cardHeight = isMobile ? 400 : 500; // 移动端更小的高度
+    const cardWidth = isMobile ? Math.min(225, containerWidth - 24) : 285; // 缩小到0.75倍：300*0.75=225, 380*0.75=285
+    const cardHeight = isMobile ? 300 : 375; // 缩小到0.75倍：400*0.75=300, 500*0.75=375
     const padding = isMobile ? 12 : 20; // 移动端更小的内边距
     
     // 获取视口信息
@@ -287,7 +287,7 @@ const App: React.FC = () => {
               }}
             >
               {/* Card */}
-              <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-[2rem] shadow-2xl border border-white/50 overflow-hidden w-[280px] md:min-w-[340px] md:max-w-[380px] pointer-events-auto">
+              <div className="relative bg-white/95 backdrop-blur-xl rounded-xl md:rounded-2xl shadow-2xl border border-white/50 overflow-hidden w-[210px] md:w-[285px] pointer-events-auto" style={{ transform: 'scale(1)' }}>
                 {/* Decorative pattern */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div className="absolute inset-0" style={{
@@ -298,13 +298,13 @@ const App: React.FC = () => {
                 
                 {/* Header */}
                 <div className="relative">
-                  <div className="px-4 md:px-8 pt-4 md:pt-6 pb-3 md:pb-4">
+                  <div className="px-3 md:px-6 pt-3 md:pt-4 pb-2 md:pb-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 md:gap-3">
-                        <div className="w-1 h-6 md:h-8 bg-heritage-cinnabar rounded-full"></div>
+                      <div className="flex items-center gap-1.5 md:gap-2">
+                        <div className="w-0.5 h-4 md:h-6 bg-heritage-cinnabar rounded-full"></div>
                         <div>
-                          <h3 className="text-lg md:text-2xl font-serif font-bold text-ink-black tracking-wider">{selectedProvince}</h3>
-                          <p className="text-[8px] md:text-[9px] text-stone-400 font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] mt-0.5">Province Archive</p>
+                          <h3 className="text-base md:text-xl font-serif font-bold text-ink-black tracking-wider">{selectedProvince}</h3>
+                          <p className="text-[7px] md:text-[8px] text-stone-400 font-bold uppercase tracking-[0.1em] md:tracking-[0.15em] mt-0.5">Province Archive</p>
                         </div>
                       </div>
                       <button 
@@ -312,9 +312,9 @@ const App: React.FC = () => {
                           setSelectedProvince(null);
                           setCardPosition(null);
                         }}
-                        className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full hover:bg-stone-100 text-stone-400 hover:text-heritage-cinnabar transition-all active:scale-95 flex-shrink-0"
+                        className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:bg-stone-100 text-stone-400 hover:text-heritage-cinnabar transition-all active:scale-95 flex-shrink-0"
                       >
-                        <svg width="12" height="12" className="md:w-[14px] md:h-[14px]" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                        <svg width="10" height="10" className="md:w-3 md:h-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                           <path d="M12 4L4 12M4 4l8 8" />
                         </svg>
                       </button>
@@ -323,32 +323,32 @@ const App: React.FC = () => {
                 </div>
                 
                 {/* Museums List */}
-                <div className="px-4 md:px-8 pb-4 md:pb-6 space-y-2 md:space-y-2.5 max-h-[240px] md:max-h-none overflow-y-auto">
+                <div className="px-3 md:px-6 pb-3 md:pb-4 space-y-1.5 md:space-y-2 max-h-[180px] md:max-h-[280px] overflow-y-auto">
                   {PROVINCE_PREVIEWS[selectedProvince].slice(0, 4).map((museum, idx) => (
                     <div 
                       key={idx} 
-                      className="group relative flex items-center gap-2 md:gap-3 p-3 md:p-4 bg-white rounded-xl md:rounded-2xl border border-stone-100 hover:border-heritage-cinnabar/30 hover:shadow-lg hover:shadow-heritage-cinnabar/5 transition-all duration-300 cursor-pointer overflow-hidden"
+                      className="group relative flex items-center gap-1.5 md:gap-2 p-2 md:p-3 bg-white rounded-lg md:rounded-xl border border-stone-100 hover:border-heritage-cinnabar/30 hover:shadow-lg hover:shadow-heritage-cinnabar/5 transition-all duration-300 cursor-pointer overflow-hidden"
                       style={{ animationDelay: `${idx * 50}ms` }}
                     >
                       {/* Hover gradient effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-heritage-cinnabar/0 via-heritage-cinnabar/5 to-heritage-cinnabar/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Icon */}
-                      <div className="relative z-10 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center bg-gradient-to-br from-heritage-cinnabar/10 to-gold-accent/10 rounded-lg md:rounded-xl group-hover:scale-110 transition-transform flex-shrink-0">
-                        <MapIcon size={12} className="md:w-[14px] md:h-[14px] text-heritage-cinnabar" strokeWidth={2.5} />
+                      <div className="relative z-10 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center bg-gradient-to-br from-heritage-cinnabar/10 to-gold-accent/10 rounded-md md:rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+                        <MapIcon size={10} className="md:w-3 md:h-3 text-heritage-cinnabar" strokeWidth={2.5} />
                       </div>
                       
                       {/* Museum name */}
                       <div className="relative z-10 flex-1 min-w-0">
-                        <div className="text-xs md:text-sm font-bold text-ink-black group-hover:text-heritage-cinnabar transition-colors truncate">
+                        <div className="text-[10px] md:text-xs font-bold text-ink-black group-hover:text-heritage-cinnabar transition-colors truncate">
                           {museum}
                         </div>
                       </div>
                       
                       {/* Arrow */}
                       <ChevronRight 
-                        size={12} 
-                        className="relative z-10 text-stone-300 group-hover:text-heritage-cinnabar group-hover:translate-x-1 transition-all flex-shrink-0 md:w-[14px] md:h-[14px]" 
+                        size={10} 
+                        className="relative z-10 text-stone-300 group-hover:text-heritage-cinnabar group-hover:translate-x-1 transition-all flex-shrink-0 md:w-3 md:h-3" 
                         strokeWidth={2.5}
                       />
                     </div>
@@ -356,12 +356,12 @@ const App: React.FC = () => {
                 </div>
                 
                 {/* Footer button */}
-                <div className="px-4 md:px-8 pb-4 md:pb-8">
+                <div className="px-3 md:px-6 pb-3 md:pb-6">
                   <button 
                     onClick={() => setActiveTab('探索目的地')}
-                    className="w-full py-2.5 md:py-3.5 bg-gradient-to-r from-heritage-cinnabar to-china-red text-white text-[10px] md:text-xs font-bold rounded-xl md:rounded-2xl transition-all hover:shadow-xl hover:shadow-heritage-cinnabar/25 hover:-translate-y-0.5 active:scale-[0.98] tracking-[0.1em] md:tracking-[0.15em] uppercase flex items-center justify-center gap-1.5 md:gap-2"
+                    className="w-full py-2 md:py-2.5 bg-gradient-to-r from-heritage-cinnabar to-china-red text-white text-[9px] md:text-[10px] font-bold rounded-lg md:rounded-xl transition-all hover:shadow-xl hover:shadow-heritage-cinnabar/25 hover:-translate-y-0.5 active:scale-[0.98] tracking-[0.08em] md:tracking-[0.1em] uppercase flex items-center justify-center gap-1 md:gap-1.5"
                   >
-                    <Compass size={12} className="md:w-[14px] md:h-[14px]" strokeWidth={2.5} />
+                    <Compass size={10} className="md:w-3 md:h-3" strokeWidth={2.5} />
                     查看更多场馆
                   </button>
                 </div>
