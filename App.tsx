@@ -136,13 +136,13 @@ const App: React.FC = () => {
       {/* --- HERO SECTION --- */}
       <section className="flex flex-col lg:flex-row gap-16 items-center">
         {/* Left: Content */}
-        <div className="lg:w-[45%] flex flex-col gap-10 animate-fade-in-up">
-          <div className="space-y-6">
-            <h1 className="text-3xl font-serif font-bold text-ink-black leading-tight">
+        <div className="w-full lg:w-[45%] flex flex-col gap-6 lg:gap-10 animate-fade-in-up">
+          <div className="space-y-4 lg:space-y-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-ink-black leading-tight">
               探索中华文明 · 发现文化之美
             </h1>
-            <p className="text-stone-500 text-lg lg:text-xl font-serif leading-relaxed italic max-w-lg">
-              以省份为入口，发现博物馆、非遗与城市故事。<br/>
+            <p className="text-stone-500 text-base md:text-lg lg:text-xl font-serif leading-relaxed italic">
+              以省份为入口，发现博物馆、非遗与城市故事。<br className="hidden md:block"/>
               在数字图卷中，重逢华夏五千年文明。
             </p>
           </div>
@@ -165,16 +165,16 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-6 mt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 mt-4">
             <button 
                onClick={() => setActiveTab('探索目的地')}
-               className="bg-heritage-cinnabar text-white px-10 py-4 rounded-full font-bold text-sm tracking-widest uppercase flex items-center gap-2 hover:bg-china-red transition-all shadow-lg shadow-heritage-cinnabar/20"
+               className="bg-heritage-cinnabar text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-xs md:text-sm tracking-widest uppercase flex items-center justify-center gap-2 hover:bg-china-red transition-all shadow-lg shadow-heritage-cinnabar/20"
             >
               开始探索 <ChevronRight size={16} />
             </button>
             <button 
               onClick={handleRandomPick}
-              className="bg-white text-stone-600 border border-stone-200 px-10 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-stone-50 transition-all"
+              className="bg-white text-stone-600 border border-stone-200 px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-xs md:text-sm tracking-widest uppercase hover:bg-stone-50 transition-all"
             >
               随机省份
             </button>
@@ -182,24 +182,24 @@ const App: React.FC = () => {
         </div>
 
         {/* Right: Map Card */}
-        <div id="map-region" className="lg:w-[55%] relative w-full aspect-[1.1/1] bg-white rounded-[32px] soft-shadow border border-stone-100 overflow-hidden flex items-center justify-center p-4 group">
+        <div id="map-region" className="w-full lg:w-[55%] relative aspect-[1.1/1] bg-white rounded-2xl md:rounded-[32px] soft-shadow border border-stone-100 overflow-hidden flex items-center justify-center p-2 md:p-4 group">
           <div className="w-full h-full flex items-center justify-center">
           <ChinaMap onSelect={handleMapProvinceSelect} selectedProvince={selectedProvince} />
           </div>
           
           {/* Stats Overlay */}
-          <div className="absolute bottom-10 left-10 flex flex-col gap-6 bg-white/40 backdrop-blur-md p-6 rounded-2xl border border-white/50 animate-fade-in">
+          <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 flex flex-col gap-3 md:gap-6 bg-white/40 backdrop-blur-md p-3 md:p-6 rounded-xl md:rounded-2xl border border-white/50 animate-fade-in">
             <div className="flex flex-col">
-              <span className="text-3xl font-serif font-bold text-heritage-cinnabar">34</span>
-              <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">省级行政区</span>
+              <span className="text-xl md:text-3xl font-serif font-bold text-heritage-cinnabar">34</span>
+              <span className="text-[8px] md:text-[10px] font-bold text-stone-400 uppercase tracking-widest">省级行政区</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-3xl font-serif font-bold text-heritage-cinnabar">5000+</span>
-              <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">博物馆与文化场所</span>
+              <span className="text-xl md:text-3xl font-serif font-bold text-heritage-cinnabar">5000+</span>
+              <span className="text-[8px] md:text-[10px] font-bold text-stone-400 uppercase tracking-widest">博物馆与文化场所</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-3xl font-serif font-bold text-heritage-cinnabar">100+</span>
-              <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">文化活动/路线</span>
+              <span className="text-xl md:text-3xl font-serif font-bold text-heritage-cinnabar">100+</span>
+              <span className="text-[8px] md:text-[10px] font-bold text-stone-400 uppercase tracking-widest">文化活动/路线</span>
             </div>
           </div>
 
@@ -214,7 +214,7 @@ const App: React.FC = () => {
               }}
             >
               {/* Card */}
-              <div className="relative bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/50 overflow-hidden min-w-[340px] max-w-[380px] pointer-events-auto">
+              <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl md:rounded-[2rem] shadow-2xl border border-white/50 overflow-hidden min-w-[280px] md:min-w-[340px] max-w-[320px] md:max-w-[380px] pointer-events-auto">
                 {/* Decorative pattern */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div className="absolute inset-0" style={{
@@ -299,7 +299,7 @@ const App: React.FC = () => {
       </section>
 
       {/* --- SECOND SCREEN CONTENT --- */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-24">
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 pb-12 md:pb-24">
         {/* A. Cultural Routes (Large Zone) */}
         <div className="lg:col-span-5 flex flex-col gap-8">
            <div className="flex justify-between items-end">
