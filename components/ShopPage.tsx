@@ -24,29 +24,29 @@ const ProductDetail: React.FC<{ product: Product, onBack: () => void }> = ({ pro
   return (
     <div className="w-full min-h-screen bg-[#FDFBF5] animate-fade-in">
       {/* Top Bar */}
-      <div className="px-8 py-6 flex items-center justify-between border-b border-stone-100/50 bg-[#FDFBF5] sticky top-0 z-10 shadow-sm">
+      <div className="px-4 md:px-8 py-4 md:py-6 flex items-center justify-between border-b border-stone-100/50 bg-[#FDFBF5] sticky top-[72px] md:top-0 z-10 shadow-sm">
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-stone-400 hover:text-heritage-cinnabar transition-all text-xs font-bold tracking-widest uppercase group"
+          className="flex items-center gap-1 md:gap-2 text-stone-400 hover:text-heritage-cinnabar transition-all text-[10px] md:text-xs font-bold tracking-widest uppercase group"
         >
-          <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <ChevronLeft size={16} className="md:w-[18px] md:h-[18px] group-hover:-translate-x-1 transition-transform" />
           返回商店
         </button>
-        <div className="text-[10px] text-stone-300 font-bold tracking-[0.3em] uppercase hidden sm:block">
+        <div className="text-[9px] md:text-[10px] text-stone-300 font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase hidden sm:block">
           Museum Heritage Archive · Official Product
         </div>
-        <div className="w-20"></div>
+        <div className="w-12 md:w-20"></div>
       </div>
 
       <div id="detail-content" className="w-full">
-        <div className="max-w-[1400px] mx-auto w-full px-8 py-12">
+        <div className="max-w-[1400px] mx-auto w-full px-4 md:px-8 py-6 md:py-12">
           {/* Main Layout: 38:62 Split for Premium Visual Hierarchy */}
-          <div className="flex flex-col lg:flex-row gap-16 xl:gap-24">
+          <div className="flex flex-col lg:flex-row gap-8 md:gap-16 xl:gap-24">
             
             {/* Left Section: Gallery (38%) */}
-            <div className="lg:w-[38%] flex flex-col gap-8 lg:sticky lg:top-8 self-start">
+            <div className="w-full lg:w-[38%] flex flex-col gap-4 md:gap-8 lg:sticky lg:top-8 self-start">
               {/* Main Image - Fixed Size Container */}
-              <div className="relative w-full h-[720px] rounded-[2.5rem] overflow-hidden bg-stone-50 shadow-2xl shadow-stone-200/40 border border-stone-100/60">
+              <div className="relative w-full h-[400px] md:h-[600px] lg:h-[720px] rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-stone-50 shadow-2xl shadow-stone-200/40 border border-stone-100/60">
                 <img 
                   src={activeImage} 
                   alt={product.name} 
@@ -56,12 +56,12 @@ const ProductDetail: React.FC<{ product: Product, onBack: () => void }> = ({ pro
               </div>
               
               {/* Thumbnail Gallery - Fixed Size */}
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-3 md:gap-4 justify-center">
                  {product.gallery.map((img, i) => (
                    <button 
                      key={`${product.id}-thumb-${i}`} 
                      onClick={() => setActiveImage(img)}
-                     className={`w-24 h-24 rounded-2xl border-2 overflow-hidden transition-all duration-300 flex-shrink-0 ${activeImage === img ? 'border-heritage-cinnabar shadow-lg scale-105' : 'border-stone-100 opacity-60 hover:opacity-100 hover:border-stone-200'}`}
+                     className={`w-16 h-16 md:w-24 md:h-24 rounded-xl md:rounded-2xl border-2 overflow-hidden transition-all duration-300 flex-shrink-0 ${activeImage === img ? 'border-heritage-cinnabar shadow-lg scale-105' : 'border-stone-100 opacity-60 hover:opacity-100 hover:border-stone-200'}`}
                    >
                      <img src={img} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" alt={`View ${i + 1}`} />
                    </button>
@@ -70,7 +70,7 @@ const ProductDetail: React.FC<{ product: Product, onBack: () => void }> = ({ pro
             </div>
 
             {/* Right Section: Info (62%) */}
-            <div className="lg:w-[62%] flex flex-col space-y-8">
+            <div className="w-full lg:w-[62%] flex flex-col space-y-6 md:space-y-8">
               {/* Core Information Header */}
               <div>
                 <div className="flex items-center gap-2 mb-4">
@@ -216,15 +216,15 @@ const ShopPage: React.FC = () => {
   }
 
   return (
-    <div className="w-full animate-fade-in bg-[#FDFBF5] min-h-screen">
+    <div className="w-full animate-fade-in bg-[#FDFBF5] min-h-screen pb-16 md:pb-24">
       {/* Page Title */}
-      <div className="mb-12">
-        <h2 className="text-3xl font-serif font-bold text-ink-black mb-2">周边商城</h2>
-        <p className="text-stone-400 text-[10px] tracking-[0.4em] uppercase font-bold">Cultural products and authentic souvenirs</p>
+      <div className="mb-8 md:mb-12">
+        <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink-black mb-2">周边商城</h2>
+        <p className="text-stone-400 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-bold">Cultural products and authentic souvenirs</p>
       </div>
       
       {/* Filtering Section */}
-      <div className="space-y-8 mb-16">
+      <div className="space-y-6 md:space-y-8 mb-12 md:mb-16">
         <div className="flex items-center gap-6 overflow-x-auto pb-4 custom-scrollbar">
           <div className="flex-shrink-0 text-[10px] font-bold text-stone-400 uppercase tracking-widest">所属馆舍</div>
           <div className="flex gap-3 items-center">
@@ -278,7 +278,7 @@ const ShopPage: React.FC = () => {
 
       {/* Grid Display */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-12 pb-40">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-12">
           {filteredProducts.map((product, index) => (
             <div 
               key={product.id}

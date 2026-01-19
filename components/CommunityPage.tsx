@@ -25,13 +25,13 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ initialFilter, onTagClick
   }, [activeFilter]);
 
   return (
-    <div className="w-full animate-fade-in flex flex-col pb-40">
+    <div className="w-full animate-fade-in flex flex-col pb-16 md:pb-40">
       
       {/* 1. Header & Active Filter Display */}
-      <div className="mb-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+      <div className="mb-8 md:mb-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-4 md:gap-6">
         <div>
-          <h2 className="text-3xl font-serif font-bold text-ink-black mb-2">寻踪灵感</h2>
-          <p className="text-stone-400 text-[10px] tracking-[0.4em] uppercase font-bold">Live user updates and cultural explorations</p>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink-black mb-2">寻踪灵感</h2>
+          <p className="text-stone-400 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-bold">Live user updates and cultural explorations</p>
         </div>
         
         {activeFilter && (
@@ -48,26 +48,26 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ initialFilter, onTagClick
       </div>
 
       {/* 2. Top Check-in Spots */}
-      <section className="mb-20">
-        <div className="flex items-end justify-between mb-8">
+      <section className="mb-12 md:mb-20">
+        <div className="flex items-end justify-between mb-6 md:mb-8">
           <div>
-            <h2 className="text-xl font-serif font-bold text-ink-black mb-1">本季热门地推荐</h2>
-            <p className="text-[10px] text-stone-300 font-bold uppercase tracking-[0.3em]">Trending Heritage Spots</p>
+            <h2 className="text-lg md:text-xl font-serif font-bold text-ink-black mb-1">本季热门地推荐</h2>
+            <p className="text-[9px] md:text-[10px] text-stone-300 font-bold uppercase tracking-[0.25em] md:tracking-[0.3em]">Trending Heritage Spots</p>
           </div>
-          <button className="flex items-center gap-1 text-sm font-bold text-stone-400 hover:text-heritage-cinnabar transition-colors group">
+          <button className="flex items-center gap-1 text-xs md:text-sm font-bold text-stone-400 hover:text-heritage-cinnabar transition-colors group">
             查看全部
-            <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+            <ChevronRight size={14} className="md:w-4 md:h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
         
-        <div className="flex gap-8 overflow-x-auto pb-8 -mx-4 px-4 custom-scrollbar">
+        <div className="flex gap-4 md:gap-8 overflow-x-auto pb-6 md:pb-8 -mx-4 px-4 custom-scrollbar">
           {COMMUNITY_CHECKINS.map((spot) => (
             <div 
               key={spot.id} 
               onClick={() => onTagClick?.(`#${spot.title}`)}
-              className="flex-shrink-0 w-80 group cursor-pointer"
+              className="flex-shrink-0 w-64 md:w-80 group cursor-pointer"
             >
-              <div className="relative aspect-[4/3] rounded-[3rem] overflow-hidden mb-5 border border-stone-100 shadow-sm transition-all duration-700 group-hover:shadow-2xl">
+              <div className="relative aspect-[4/3] rounded-2xl md:rounded-[3rem] overflow-hidden mb-3 md:mb-5 border border-stone-100 shadow-sm transition-all duration-700 group-hover:shadow-2xl">
                 <ImageWithFallback 
                   src={spot.image} 
                   alt={spot.title}
@@ -93,7 +93,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ initialFilter, onTagClick
         </div>
       </section>
 
-      <div className="flex flex-col xl:flex-row gap-20">
+      <div className="flex flex-col xl:flex-row gap-12 md:gap-20">
         {/* 3. User Feed */}
         <section className="flex-[3]">
           <div className="flex items-end justify-between mb-10">

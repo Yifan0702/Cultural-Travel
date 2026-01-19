@@ -377,24 +377,24 @@ const EducationPage: React.FC = () => {
       <div className="w-full h-[1px] bg-stone-200/50 mb-16"></div>
 
       {/* Section 2: Huaxia Academy (Online) */}
-      <section className="mb-16">
+      <section className="mb-12 md:mb-16">
         {/* Part A: Master Lectures */}
-        <div className="mb-16">
-          <div className="flex items-center justify-between mb-10">
+        <div className="mb-12 md:mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 md:mb-10 gap-4">
             <div>
-              <h3 className="text-2xl font-serif font-bold text-ink-black flex items-center gap-3">
-                <Award className="text-gold-accent" size={24} /> 大师讲堂
+              <h3 className="text-xl md:text-2xl font-serif font-bold text-ink-black flex items-center gap-2 md:gap-3">
+                <Award className="text-gold-accent" size={20} /> 大师讲堂
               </h3>
-              <p className="text-[10px] text-stone-400 font-bold uppercase tracking-[0.3em] mt-1 ml-9">Master Lectures</p>
+              <p className="text-[9px] md:text-[10px] text-stone-400 font-bold uppercase tracking-[0.25em] md:tracking-[0.3em] mt-1 ml-7 md:ml-9">Master Lectures</p>
             </div>
-            <button className="text-[10px] font-bold text-stone-400 hover:text-heritage-cinnabar uppercase tracking-widest border-b border-stone-200 hover:border-heritage-cinnabar pb-1 transition-all">
+            <button className="text-[9px] md:text-[10px] font-bold text-stone-400 hover:text-heritage-cinnabar uppercase tracking-widest border-b border-stone-200 hover:border-heritage-cinnabar pb-1 transition-all self-start sm:self-auto">
               查看更多课程
             </button>
           </div>
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
              {LECTURES.map((lec, idx) => (
-               <div key={lec.id} className="group flex flex-col md:flex-row bg-white rounded-[3rem] overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-700 animate-fade-in-up" style={{ animationDelay: `${idx * 150}ms` }}>
-                  <div className="md:w-2/5 relative h-80 md:h-auto overflow-hidden">
+               <div key={lec.id} className="group flex flex-col md:flex-row bg-white rounded-2xl md:rounded-[3rem] overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-700 animate-fade-in-up" style={{ animationDelay: `${idx * 150}ms` }}>
+                  <div className="md:w-2/5 relative h-64 md:h-auto overflow-hidden">
                     <ImageWithFallback 
                       src={lec.image} 
                       alt={lec.title}
@@ -408,7 +408,7 @@ const EducationPage: React.FC = () => {
                        <div className="text-[9px] text-white/70 font-bold uppercase tracking-widest">{lec.title_desc}</div>
                     </div>
                   </div>
-                  <div className="md:w-3/5 p-10 flex flex-col justify-center">
+                  <div className="md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
                     <div className="flex items-center justify-between mb-4">
                        <span className="px-3 py-1 bg-stone-100 rounded-full text-[9px] font-bold text-stone-500 tracking-widest uppercase">共 {lec.episodes} 集</span>
                        <div className="flex text-gold-accent"><Award size={14} /></div>
@@ -432,22 +432,22 @@ const EducationPage: React.FC = () => {
         </div>
 
         {/* Horizontal Divider */}
-        <div className="w-full h-[1px] bg-stone-200/50 mb-16"></div>
+        <div className="w-full h-[1px] bg-stone-200/50 mb-12 md:mb-16"></div>
 
         {/* Part B: Blogger Insights */}
         <div>
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 md:mb-10 gap-4">
             <div>
-              <h3 className="text-2xl font-serif font-bold text-ink-black flex items-center gap-3">
-                <TrendingUp className="text-heritage-cinnabar" size={24} /> 博主视界
+              <h3 className="text-xl md:text-2xl font-serif font-bold text-ink-black flex items-center gap-2 md:gap-3">
+                <TrendingUp className="text-heritage-cinnabar" size={20} /> 博主视界
               </h3>
-              <p className="text-[10px] text-stone-400 font-bold uppercase tracking-[0.3em] mt-1 ml-9">Blogger Insights</p>
+              <p className="text-[9px] md:text-[10px] text-stone-400 font-bold uppercase tracking-[0.25em] md:tracking-[0.3em] mt-1 ml-7 md:ml-9">Blogger Insights</p>
             </div>
-            <button className="text-[10px] font-bold text-stone-400 hover:text-heritage-cinnabar uppercase tracking-widest border-b border-stone-200 hover:border-heritage-cinnabar pb-1 transition-all">
+            <button className="text-[9px] md:text-[10px] font-bold text-stone-400 hover:text-heritage-cinnabar uppercase tracking-widest border-b border-stone-200 hover:border-heritage-cinnabar pb-1 transition-all self-start sm:self-auto">
               查看更多视频
             </button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
              {BLOGGER_VIDEOS.map((vid, idx) => (
                <div key={vid.id} className="group cursor-pointer animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }} onClick={() => setSelectedVideo(vid)}>
                   <div className="relative aspect-video rounded-[2rem] overflow-hidden mb-5 border border-stone-100 shadow-sm transition-all duration-700 group-hover:shadow-2xl">
