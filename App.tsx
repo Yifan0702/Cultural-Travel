@@ -25,39 +25,112 @@ const App: React.FC = () => {
   const [cardPosition, setCardPosition] = useState<{ x: number; y: number } | null>(null);
 
   const calculateCardPosition = useCallback((clickX: number, clickY: number) => {
-    const cardWidth = 380;
-    const cardHeight = 500; // 预估卡片高度
-    const padding = 20;
     const mapContainer = document.getElementById('map-region');
-    
     if (!mapContainer) return { x: clickX, y: clickY };
     
     const containerRect = mapContainer.getBoundingClientRect();
     const containerWidth = containerRect.width;
     const containerHeight = containerRect.height;
     
+    // 根据屏幕宽度动态计算卡片尺寸
+    const isMobile = window.innerWidth < 768;
+    const cardWidth = isMobile ? Math.min(300, containerWidth - 24) : 380; // 移动端更小，留出更多边距
+    const cardHeight = isMobile ? 400 : 500; // 移动端更小的高度
+    const padding = isMobile ? 12 : 20; // 移动端更小的内边距
+    
+    // 获取视口信息
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // 计算点击位置相对于视口的坐标
+    const clickXViewport = containerRect.left + clickX;
+    const clickYViewport = containerRect.top + clickY;
+    
     let finalX = clickX;
     let finalY = clickY;
     
-    // 智能水平定位
-    if (clickX < containerWidth / 2) {
-      // 左侧点击，卡片显示在右侧
-      finalX = Math.min(clickX + padding, containerWidth - cardWidth - padding);
+    // 移动端：优先居中显示，确保完全在视口内
+    if (isMobile) {
+      // 水平居中（相对于容器）
+      finalX = Math.max(padding, (containerWidth - cardWidth) / 2);
+      
+      // 确保不超出视口左右边界
+      const cardLeftViewport = containerRect.left + finalX;
+      const cardRightViewport = cardLeftViewport + cardWidth;
+      
+      if (cardLeftViewport < padding) {
+        finalX = padding - (containerRect.left - padding);
+      } else if (cardRightViewport > viewportWidth - padding) {
+        finalX = (viewportWidth - padding - cardWidth) - containerRect.left;
+      }
+      
+      // 垂直定位：优先显示在点击位置上方，如果空间不够则调整
+      const cardHalfHeight = cardHeight / 2;
+      const topSpace = clickYViewport;
+      const bottomSpace = viewportHeight - clickYViewport;
+      
+      if (topSpace >= cardHalfHeight + padding) {
+        // 上方空间足够，显示在点击位置上方
+        finalY = clickY - cardHalfHeight;
+      } else if (bottomSpace >= cardHalfHeight + padding) {
+        // 下方空间足够，显示在点击位置下方
+        finalY = clickY + cardHalfHeight;
+      } else {
+        // 空间都不够，居中显示在视口
+        const viewportCenterY = (viewportHeight - containerRect.top) / 2;
+        finalY = Math.max(cardHalfHeight + padding, Math.min(viewportCenterY, containerHeight - cardHalfHeight - padding));
+      }
     } else {
-      // 右侧点击，卡片显示在左侧
-      finalX = Math.max(clickX - cardWidth - padding, padding);
-    }
-    
-    // 垂直边界检测
-    const cardTop = clickY - cardHeight / 2;
-    const cardBottom = clickY + cardHeight / 2;
-    
-    if (cardTop < padding) {
-      // 超出顶部，向下移动
-      finalY = cardHeight / 2 + padding;
-    } else if (cardBottom > containerHeight - padding) {
-      // 超出底部，向上移动
-      finalY = containerHeight - cardHeight / 2 - padding;
+      // 桌面端：智能定位
+      // 智能水平定位
+      if (clickX < containerWidth / 2) {
+        // 左侧点击，卡片显示在右侧
+        const rightEdge = clickX + cardWidth;
+        const maxRight = Math.min(containerWidth, viewportWidth - containerRect.left - padding);
+        
+        if (rightEdge > maxRight) {
+          finalX = Math.max(padding, clickX - cardWidth - padding);
+          if (finalX < padding) {
+            finalX = Math.max(padding, (containerWidth - cardWidth) / 2);
+          }
+        } else {
+          finalX = clickX + padding;
+        }
+      } else {
+        // 右侧点击，卡片显示在左侧
+        const leftEdge = clickX - cardWidth;
+        const minLeft = Math.max(0, -containerRect.left + padding);
+        
+        if (leftEdge < minLeft) {
+          finalX = Math.min(clickX + padding, containerWidth - cardWidth - padding);
+          if (finalX > containerWidth - cardWidth - padding) {
+            finalX = Math.max(padding, (containerWidth - cardWidth) / 2);
+          }
+        } else {
+          finalX = clickX - cardWidth - padding;
+        }
+      }
+      
+      // 确保不超出容器边界
+      finalX = Math.max(padding, Math.min(finalX, containerWidth - cardWidth - padding));
+      
+      // 垂直边界检测
+      const cardHalfHeight = cardHeight / 2;
+      const cardTopViewport = clickYViewport - cardHalfHeight;
+      const cardBottomViewport = clickYViewport + cardHalfHeight;
+      
+      if (cardTopViewport < padding) {
+        finalY = cardHalfHeight + padding;
+      } else if (cardBottomViewport > viewportHeight - padding) {
+        finalY = containerHeight - cardHalfHeight - padding;
+        const finalYViewport = containerRect.top + finalY;
+        if (finalYViewport - cardHalfHeight < padding) {
+          finalY = containerHeight / 2;
+        }
+      }
+      
+      // 确保不超出容器边界
+      finalY = Math.max(cardHalfHeight + padding, Math.min(finalY, containerHeight - cardHalfHeight - padding));
     }
     
     return { x: finalX, y: finalY };
@@ -210,11 +283,11 @@ const App: React.FC = () => {
               style={{
                 left: `${cardPosition.x}px`,
                 top: `${cardPosition.y}px`,
-                transform: 'translate(0, -50%)'
+                transform: window.innerWidth < 768 ? 'translateY(-50%)' : 'translate(0, -50%)'
               }}
             >
               {/* Card */}
-              <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl md:rounded-[2rem] shadow-2xl border border-white/50 overflow-hidden min-w-[280px] md:min-w-[340px] max-w-[320px] md:max-w-[380px] pointer-events-auto">
+              <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-[2rem] shadow-2xl border border-white/50 overflow-hidden w-[280px] md:min-w-[340px] md:max-w-[380px] pointer-events-auto">
                 {/* Decorative pattern */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div className="absolute inset-0" style={{
@@ -225,13 +298,13 @@ const App: React.FC = () => {
                 
                 {/* Header */}
                 <div className="relative">
-                  <div className="px-8 pt-6 pb-4">
+                  <div className="px-4 md:px-8 pt-4 md:pt-6 pb-3 md:pb-4">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-1 h-8 bg-heritage-cinnabar rounded-full"></div>
+                      <div className="flex items-center gap-2 md:gap-3">
+                        <div className="w-1 h-6 md:h-8 bg-heritage-cinnabar rounded-full"></div>
                         <div>
-                          <h3 className="text-2xl font-serif font-bold text-ink-black tracking-wider">{selectedProvince}</h3>
-                          <p className="text-[9px] text-stone-400 font-bold uppercase tracking-[0.2em] mt-0.5">Province Archive</p>
+                          <h3 className="text-lg md:text-2xl font-serif font-bold text-ink-black tracking-wider">{selectedProvince}</h3>
+                          <p className="text-[8px] md:text-[9px] text-stone-400 font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] mt-0.5">Province Archive</p>
                         </div>
                       </div>
                       <button 
@@ -239,9 +312,9 @@ const App: React.FC = () => {
                           setSelectedProvince(null);
                           setCardPosition(null);
                         }}
-                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-stone-100 text-stone-400 hover:text-heritage-cinnabar transition-all active:scale-95"
+                        className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full hover:bg-stone-100 text-stone-400 hover:text-heritage-cinnabar transition-all active:scale-95 flex-shrink-0"
                       >
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                        <svg width="12" height="12" className="md:w-[14px] md:h-[14px]" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                           <path d="M12 4L4 12M4 4l8 8" />
                         </svg>
                       </button>
@@ -250,32 +323,32 @@ const App: React.FC = () => {
                 </div>
                 
                 {/* Museums List */}
-                <div className="px-8 pb-6 space-y-2.5">
+                <div className="px-4 md:px-8 pb-4 md:pb-6 space-y-2 md:space-y-2.5 max-h-[240px] md:max-h-none overflow-y-auto">
                   {PROVINCE_PREVIEWS[selectedProvince].slice(0, 4).map((museum, idx) => (
                     <div 
                       key={idx} 
-                      className="group relative flex items-center gap-3 p-4 bg-white rounded-2xl border border-stone-100 hover:border-heritage-cinnabar/30 hover:shadow-lg hover:shadow-heritage-cinnabar/5 transition-all duration-300 cursor-pointer overflow-hidden"
+                      className="group relative flex items-center gap-2 md:gap-3 p-3 md:p-4 bg-white rounded-xl md:rounded-2xl border border-stone-100 hover:border-heritage-cinnabar/30 hover:shadow-lg hover:shadow-heritage-cinnabar/5 transition-all duration-300 cursor-pointer overflow-hidden"
                       style={{ animationDelay: `${idx * 50}ms` }}
                     >
                       {/* Hover gradient effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-heritage-cinnabar/0 via-heritage-cinnabar/5 to-heritage-cinnabar/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Icon */}
-                      <div className="relative z-10 w-8 h-8 flex items-center justify-center bg-gradient-to-br from-heritage-cinnabar/10 to-gold-accent/10 rounded-xl group-hover:scale-110 transition-transform flex-shrink-0">
-                        <MapIcon size={14} className="text-heritage-cinnabar" strokeWidth={2.5} />
+                      <div className="relative z-10 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center bg-gradient-to-br from-heritage-cinnabar/10 to-gold-accent/10 rounded-lg md:rounded-xl group-hover:scale-110 transition-transform flex-shrink-0">
+                        <MapIcon size={12} className="md:w-[14px] md:h-[14px] text-heritage-cinnabar" strokeWidth={2.5} />
                       </div>
                       
                       {/* Museum name */}
                       <div className="relative z-10 flex-1 min-w-0">
-                        <div className="text-sm font-bold text-ink-black group-hover:text-heritage-cinnabar transition-colors truncate">
+                        <div className="text-xs md:text-sm font-bold text-ink-black group-hover:text-heritage-cinnabar transition-colors truncate">
                           {museum}
                         </div>
                       </div>
                       
                       {/* Arrow */}
                       <ChevronRight 
-                        size={14} 
-                        className="relative z-10 text-stone-300 group-hover:text-heritage-cinnabar group-hover:translate-x-1 transition-all flex-shrink-0" 
+                        size={12} 
+                        className="relative z-10 text-stone-300 group-hover:text-heritage-cinnabar group-hover:translate-x-1 transition-all flex-shrink-0 md:w-[14px] md:h-[14px]" 
                         strokeWidth={2.5}
                       />
                     </div>
@@ -283,12 +356,12 @@ const App: React.FC = () => {
                 </div>
                 
                 {/* Footer button */}
-                <div className="px-8 pb-8">
+                <div className="px-4 md:px-8 pb-4 md:pb-8">
                   <button 
                     onClick={() => setActiveTab('探索目的地')}
-                    className="w-full py-3.5 bg-gradient-to-r from-heritage-cinnabar to-china-red text-white text-xs font-bold rounded-2xl transition-all hover:shadow-xl hover:shadow-heritage-cinnabar/25 hover:-translate-y-0.5 active:scale-[0.98] tracking-[0.15em] uppercase flex items-center justify-center gap-2"
+                    className="w-full py-2.5 md:py-3.5 bg-gradient-to-r from-heritage-cinnabar to-china-red text-white text-[10px] md:text-xs font-bold rounded-xl md:rounded-2xl transition-all hover:shadow-xl hover:shadow-heritage-cinnabar/25 hover:-translate-y-0.5 active:scale-[0.98] tracking-[0.1em] md:tracking-[0.15em] uppercase flex items-center justify-center gap-1.5 md:gap-2"
                   >
-                    <Compass size={14} strokeWidth={2.5} />
+                    <Compass size={12} className="md:w-[14px] md:h-[14px]" strokeWidth={2.5} />
                     查看更多场馆
                   </button>
                 </div>
